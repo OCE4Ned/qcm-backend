@@ -1,11 +1,21 @@
 <%- include("header") -%>
 
 <form action="/qcms/new" method="post">
-    <label for="title">Titre</label>
-    <input type="text" id="title" name="title">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+
+    <label for="theme">Theme</label>
+    <input type="text" id="theme" name="theme">
+
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject">
+
+    <label for="author">Author</label>
+    <input type="text" id="author" name="author">
+
+    <label for="nbpoints">Nombre de points</label>
+    <input type="number" id="nbpoints" name="nbpoints">
 
     <input type="submit" value="Create">
 </form>
-
-<p>QCM créé: <%=  %></p>
 <%- include("footer") -%>

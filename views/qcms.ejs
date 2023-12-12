@@ -3,7 +3,7 @@
 <h1>Mes QCMS</h1>
 <ul>
     <% for(let qcm of qcms) { %>
-    <li><%= qcm %></li>
+    <li><%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %></li>
     <% } %>
 </ul>
 <%- include("footer") -%>

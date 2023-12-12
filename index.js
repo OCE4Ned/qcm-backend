@@ -1,34 +1,20 @@
 const express = require('express');
-
-// Base
-const {
-    welcomeMessage,
-    welcomeMessageFunction,
-    testEjsView
-} = require("./controllers/welcome");
-
-// QCM
-const {
-    displayQcms,
-    displayFormQcm,
-    createNewForm
-} = require("./controllers/qcms");
-
+// Application express
 const app = express();
-const port = 3000;
+
+// Import des routers
+const routerWelcome = require('./routers/route');
+const routerQcm = require('./routers/qcmroute');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}));
 
-// Base
-app.get('/', welcomeMessage);
-app.get('/welcome2', welcomeMessageFunction);
-app.get('/testejs', testEjsView);
+const port = 3000;
 
-// QCMS
-app.get('/qcms', displayQcms);
-app.get('/qcms/new', displayFormQcm);
-app.post('/qcms/new', createNewForm);
+// Assoccier des routes a l'application
+app.use(routerWelcome);
+// Association
+app.use('/qcms', routerQcm);
 
 app.listen(port, ()=> {
     console.log(`Ecoute sur http://localhost:${port}`);
