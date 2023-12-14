@@ -13,7 +13,7 @@ const port = 3000;
 
 // Assoccier des routes a l'application
 app.use(routerWelcome);
-// Association
+//Association avec definition d'un prefixe, c'est à dire que toutes les routes associées seront accessibles avec le préfixe /qcms
 app.use('/qcms', routerQcm);
 
 app.listen(port, ()=> {

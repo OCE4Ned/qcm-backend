@@ -1,4 +1,4 @@
-const {qcms, newQcm} = require('../models/inmemory');
+const {qcms, newQcm, newQuestion} = require('../models/inmemory');
 
 const displayQcms = (req, res) => {
 
@@ -9,17 +9,18 @@ const displayFormQcm= (req, res)=>{
 };
 const createNewForm= (req, res)=>{
     console.log(req.body);
-    newQcm(req.body);
-    res.redirect("/qcms");
+    const qcm = newQcm(req.body);
+    res.redirect("/qcms/"+qcm.id);
 };
 
 const displayQcmJson = (req,res)=>{
-
+    res.json({qcms});
 };
 
-const displayQcmDetailed = (res, req)=>{
+const displayQcmDetailed = (req, res)=>{
     const id = Number(req.params.qcmid);
-    const qcm = qcms.find((element) => element.id === id)
+    const qcm = qcms.find((element) => element.id === id);
     res.render('qcm', {qcm});
 }
+
 module.exports = {displayQcms, displayFormQcm, createNewForm, displayQcmJson, displayQcmDetailed};

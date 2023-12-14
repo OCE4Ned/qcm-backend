@@ -11,10 +11,10 @@ const {
 
 // QCM routes
 router.get('/', displayQcms);
-router.get('/:id', displayQcmDetailed);
 router.get('/json', displayQcmJson);
 router.get('/new', displayFormQcm);
 router.post('/new', createNewForm);
+router.get('/:qcmid', displayQcmDetailed);
 
 module.exports = router;
 

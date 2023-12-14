@@ -1,6 +1,6 @@
 <%- include("header") -%>
 
-<form action="/qcms/new" method="post">
+<form id="form-question" action="/qcms/new" method="post">
     <label for="name">Name</label>
     <input type="text" id="name" name="name">
 
@@ -16,6 +16,89 @@
     <label for="nbpoints">Nombre de points</label>
     <input type="number" id="nbpoints" name="nbpoints">
 
+    <h2>Questions</h2>
+
+    <button type="button" id="addQuestion">Ajouter une question</button>
+    <div id="questions-container">
+
+    </div>
+
     <input type="submit" value="Create">
 </form>
+
+<script>
+    let qcmForm = document.querySelector("#form-question");
+    let addQuestion = document.querySelector('#addQuestion');
+    let questionContainer = document.querySelector('#questions-container');
+    let idQuestion = 0;
+    addQuestion.addEventListener("click", function (evt) {
+        evt.preventDefault();
+        createQuestion();
+    });
+
+    function createProposition(propositionButton){
+        let propositionDiv = document.createElement("div");
+        propositionDiv.setAttribute('class', 'proposition');
+
+        let propositionsContainer = propositionButton.parentElement.querySelector('.propositions-container');
+        propositionsContainer.appendChild(propositionDiv);
+
+        let propositionField = document.createElement("input");
+        propositionField.setAttribute('name', 'proposition['+idQuestion+'][]');
+        propositionField.setAttribute('placeholder', 'Votre proposition ici...');
+        propositionDiv.appendChild(propositionField);
+
+        let propositionCheckBox = document.createElement('input');
+        propositionCheckBox.setAttribute('type', 'checkbox');
+        propositionCheckBox.setAttribute('name', 'checkbox');
+        propositionDiv.appendChild(propositionCheckBox);
+    }
+
+    function createQuestion(){
+        idQuestion++;
+        let question =  document.createElement('div');
+        question.setAttribute('class', 'question');
+        questionContainer.appendChild(question);
+
+        let questionField = document.createElement("input");
+        questionField.setAttribute('name', 'questions[]');
+        questionField.setAttribute('placeholder', "Votre question ici...");
+        question.appendChild(questionField);
+
+        let propositionsContainer = document.createElement('div');
+        propositionsContainer.setAttribute('class', 'propositions-container');
+        question.appendChild(propositionsContainer);
+
+        let addPropositionBtn = document.createElement('button');
+        addPropositionBtn.setAttribute('type', 'button');
+        addPropositionBtn.setAttribute('onclick', 'createProposition(this)');
+        addPropositionBtn.innerHTML = "Ajouter une proposition";
+
+        question.appendChild(addPropositionBtn);
+
+        createProposition(addPropositionBtn);
+    }
+
+    createQuestion();
+</script>
+
+<style>
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+    }
+    label
+    {
+        margin-top: 20px;
+    }
+
+    #questions-container
+    {
+        margin: 20px;
+    }
+    .question{
+        margin: 10px;
+    }
+</style>
 <%- include("footer") -%>
