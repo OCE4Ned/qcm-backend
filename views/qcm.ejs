@@ -2,6 +2,28 @@
 
 <h1>Mon QCM</h1>
 <ul>
-    <li><%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %></li>
+    <li>
+        <%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %>
+    </li>
+    <li>
+        <ul>
+            Questions
+            <% for(let question of qcm.questions) { %>
+                <li>
+                    id <%= question.id %> name <%= question.name %>
+                    <ul>
+                        Propositions
+                        <% for(let propositions of question.proposition_list) { %>
+                        <li>
+                            id <%= propositions.id %> Name <%= propositions.name %> Value <%= propositions.isTrue %>
+                        </li>
+                        <% } %>
+                    </ul>
+
+                </li>
+            <% } %>
+        </ul>
+    </li>
+
 </ul>
 <%- include("footer") -%>

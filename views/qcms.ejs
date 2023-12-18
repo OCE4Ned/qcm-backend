@@ -3,7 +3,9 @@
 <h1>Mes QCMS</h1>
 <ul>
     <% for(let qcm of qcms) { %>
-    <li><%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %></li>
+    <li><%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %> <a href="<%= qcm.id %>">Voir</a></li>
     <% } %>
 </ul>
+
+<a href="/qcms/new">Ajouter un QCM</a>
 <%- include("footer") -%>

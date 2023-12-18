@@ -1,68 +1,61 @@
 <%- include("header") -%>
+<section>
+    <form id="form-question" action="/qcms/new" method="post">
+        <h2>Nouveau QCM</h2>
 
-<form id="form-question" action="/qcms/new" method="post">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
 
-    <label for="theme">Theme</label>
-    <input type="text" id="theme" name="theme">
+        <label for="theme">Theme</label>
+        <input type="text" id="theme" name="theme">
 
-    <label for="subject">Subject</label>
-    <input type="text" id="subject" name="subject">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject">
 
-    <label for="author">Author</label>
-    <input type="text" id="author" name="author">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author">
 
-    <label for="nbpoints">Nombre de points</label>
-    <input type="number" id="nbpoints" name="nbpoints">
+        <label for="nbpoints">Nombre de points</label>
+        <input type="number" id="nbpoints" name="nbpoints">
 
-    <h2>Questions</h2>
+        <h2>Questions</h2>
 
-    <button type="button" id="addQuestion">Ajouter une question</button>
-    <div id="questions-container">
+        <button type="button" id="addQuestion">Ajouter une question</button>
+        <div id="questions-container">
 
-    </div>
+        </div>
 
-    <input type="submit" value="Create">
-</form>
+        <input type="submit" value="Create">
+    </form>
+</section>
+
 
 <script>
     let qcmForm = document.querySelector("#form-question");
     let addQuestion = document.querySelector('#addQuestion');
     let questionContainer = document.querySelector('#questions-container');
     let idQuestion = 0;
+
     addQuestion.addEventListener("click", function (evt) {
         evt.preventDefault();
         createQuestion();
     });
 
-    function createProposition(propositionButton){
-        let propositionDiv = document.createElement("div");
-        propositionDiv.setAttribute('class', 'proposition');
-
-        let propositionsContainer = propositionButton.parentElement.querySelector('.propositions-container');
-        propositionsContainer.appendChild(propositionDiv);
-
-        let propositionField = document.createElement("input");
-        propositionField.setAttribute('name', 'proposition['+idQuestion+'][]');
-        propositionField.setAttribute('placeholder', 'Votre proposition ici...');
-        propositionDiv.appendChild(propositionField);
-
-        let propositionCheckBox = document.createElement('input');
-        propositionCheckBox.setAttribute('type', 'checkbox');
-        propositionCheckBox.setAttribute('name', 'checkbox');
-        propositionDiv.appendChild(propositionCheckBox);
-    }
-
     function createQuestion(){
         idQuestion++;
+
         let question =  document.createElement('div');
         question.setAttribute('class', 'question');
         questionContainer.appendChild(question);
 
+        let questionLabel = document.createElement("label");
+        questionLabel.setAttribute('for', 'questions[]');
+        questionLabel.innerHTML= "Question";
+
         let questionField = document.createElement("input");
         questionField.setAttribute('name', 'questions[]');
         questionField.setAttribute('placeholder', "Votre question ici...");
+        question.appendChild(questionLabel);
         question.appendChild(questionField);
 
         let propositionsContainer = document.createElement('div');
@@ -79,26 +72,82 @@
         createProposition(addPropositionBtn);
     }
 
+    function createProposition(propositionButton){
+        let propositionDiv = document.createElement("div");
+        propositionDiv.setAttribute('class', 'proposition');
+
+        let propositionsContainer = propositionButton.parentElement.querySelector('.propositions-container');
+        propositionsContainer.appendChild(propositionDiv);
+
+        let propositionField = document.createElement("input");
+        propositionField.setAttribute('name', 'proposition['+idQuestion+'][]');
+        propositionField.setAttribute('placeholder', 'Votre proposition ici...');
+        propositionDiv.appendChild(propositionField);
+
+        // Impostor checkBox
+        let propositionCheckBoxHidden = document.createElement('input');
+        propositionCheckBoxHidden.setAttribute('type', 'checkbox');
+        propositionCheckBoxHidden.setAttribute('type', 'hidden');
+        propositionCheckBoxHidden.setAttribute('name', 'goodAnswers['+idQuestion+'][]');
+        propositionCheckBoxHidden.setAttribute('value', 'False');
+        propositionDiv.appendChild(propositionCheckBoxHidden);
+
+        let propositionCheckBox = document.createElement('input');
+        propositionCheckBox.setAttribute('type', 'checkbox');
+        propositionCheckBox.setAttribute('name', 'goodAnswers['+idQuestion+'][]');
+        propositionCheckBox.setAttribute('value', 'True');
+        propositionCheckBox.setAttribute('onclick', 'destroyFake(this)');
+        propositionDiv.appendChild(propositionCheckBox);
+    }
+
+    // disable Impostor checkBox
+    function destroyFake(checkbox){
+        checkbox.previousElementSibling.setAttribute('disabled', 'disabled');
+    }
+
     createQuestion();
 </script>
 
 <style>
+    *{
+        font-family: 'Arial', serif;
+    }
     form{
         display: flex;
         flex-direction: column;
         width: 400px;
+        margin: 0  auto;
     }
     label
     {
-        margin-top: 20px;
+        margin:20px 0 10px 0;
     }
-
+    input{
+        border-radius: 20px;
+        padding: 10px;
+        border: none;
+        background-color: lightblue;
+        box-shadow: 1px 1px 3px grey;
+    }
     #questions-container
     {
         margin: 20px;
     }
     .question{
         margin: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .proposition
+    {
+        margin: 5px;
+    }
+    button
+    {
+        border-radius: 20px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
     }
 </style>
 <%- include("footer") -%>

@@ -1,4 +1,4 @@
-const {qcms, newQcm, newQuestion} = require('../models/inmemory');
+const {qcms, newQcm} = require('../models/inmemory');
 
 const displayQcms = (req, res) => {
 
