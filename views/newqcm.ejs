@@ -1,5 +1,6 @@
 <%- include("header") -%>
 <section>
+    <a href="/qcms">Retour aux QCMS</a>
     <form id="form-question" action="/qcms/new" method="post">
         <h2>Nouveau QCM</h2>
 
@@ -107,47 +108,4 @@
 
     createQuestion();
 </script>
-
-<style>
-    *{
-        font-family: 'Arial', serif;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        width: 400px;
-        margin: 0  auto;
-    }
-    label
-    {
-        margin:20px 0 10px 0;
-    }
-    input{
-        border-radius: 20px;
-        padding: 10px;
-        border: none;
-        background-color: lightblue;
-        box-shadow: 1px 1px 3px grey;
-    }
-    #questions-container
-    {
-        margin: 20px;
-    }
-    .question{
-        margin: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-    .proposition
-    {
-        margin: 5px;
-    }
-    button
-    {
-        border-radius: 20px;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-    }
-</style>
 <%- include("footer") -%>

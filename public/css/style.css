@@ -1,0 +1,121 @@
+*{
+    font-family: 'Arial', serif;
+}
+
+body{
+    margin: 0;
+    background-color: lightgray;
+}
+
+h1{
+    margin-top: 0;
+}
+
+section{
+    padding: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 6px 6px lightgray;
+}
+
+a{
+    text-decoration: none;
+    background-color: aquamarine;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 0 3px 3px lightgray;
+    margin: 20px 0;
+    color:black;
+    font-weight: bold;
+}
+
+ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li{
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 20px;
+    margin: 30px 0;
+    box-shadow: 0 0 3px 3px lightgray;
+}
+
+.qcminfos{
+    display: flex;
+    flex-direction: column;
+}
+
+p{
+    margin: 0;
+}
+
+span
+{
+    font-weight: bold;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0  auto;
+}
+label
+{
+    margin:20px 0 10px 0;
+    font-weight: bold;
+}
+input{
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    background-color: lightblue;
+    box-shadow: 1px 1px 3px grey;
+}
+
+input[type=checkbox]{
+    margin-left: 20px;
+}
+#questions-container
+{
+    margin: 20px;
+}
+.question{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.proposition
+{
+    margin: 5px;
+}
+.propositions-container{
+    margin-top: 10px;
+}
+
+button
+{
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    background-color: aquamarine;
+}
+
+.qcmcontainer{
+    margin: 20px 0;
+}
+
+.propositionlist h3{
+    margin-top: 0;
+}
+.propositionlist li{
+
+    background-color: white;
+}

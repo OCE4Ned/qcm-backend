@@ -2,12 +2,14 @@ const express = require('express');
 // Application express
 const app = express();
 
+
 // Import des routers
 const routerWelcome = require('./routers/route');
 const routerQcm = require('./routers/qcmroute');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}));
+app.use(express.static('public'));
 
 const port = 3000;
 

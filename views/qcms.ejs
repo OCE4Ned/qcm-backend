@@ -1,11 +1,31 @@
 <%- include("header") -%>
 
-<h1>Mes QCMS</h1>
-<ul>
-    <% for(let qcm of qcms) { %>
-    <li><%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %> <a href="<%= qcm.id %>">Voir</a></li>
-    <% } %>
-</ul>
 
-<a href="/qcms/new">Ajouter un QCM</a>
+<section>
+    <h1>Mes QCMS</h1>
+    <ul>
+        <% for(let qcm of qcms) { %>
+            <li>
+                <div class="qcmcontainer">
+                    <p>
+                        Id :<span> <%= qcm.id %></span>
+                    </p>
+                    <p>
+                        Name : <span><%= qcm.name %></span>
+                    </p>
+                    <p>
+                        Subject : <span><%= qcm.subject %></span>
+                    </p>
+                    <p>
+                        Points : <span><%= qcm.nbpoints %></span>
+                    </p>
+                </div>
+                <a href="/qcms/<%= qcm.id %>">Voir</a>
+            </li>
+
+        <% } %>
+    </ul>
+    <a href="/qcms/new">Ajouter un QCM</a>
+</section>
+
 <%- include("footer") -%>

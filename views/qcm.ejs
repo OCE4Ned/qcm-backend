@@ -1,29 +1,56 @@
 <%- include("header") -%>
 
-<h1>Mon QCM</h1>
-<ul>
-    <li>
-        <%= qcm.id %> <%= qcm.name %> (<%= qcm.subject %>) : <%= qcm.nbpoints %>
-    </li>
-    <li>
-        <ul>
-            Questions
-            <% for(let question of qcm.questions) { %>
-                <li>
-                    id <%= question.id %> name <%= question.name %>
-                    <ul>
-                        Propositions
-                        <% for(let propositions of question.proposition_list) { %>
-                        <li>
-                            id <%= propositions.id %> Name <%= propositions.name %> Value <%= propositions.isTrue %>
-                        </li>
-                        <% } %>
-                    </ul>
+<section>
+    <a href="/qcms">Retour aux QCMS</a>
+    <ul>
+        <li class="qcminfos">
+            <h1>QCM</h1>
+            <p>
+                Id : <span><%= qcm.id %></span>
+            </p>
+            <p>
+                Name : <span><%= qcm.name %></span>
+            </p>
+            <p>
+                Subject : <span><%= qcm.subject %></span>
+            </p>
+            <p>
+                Points :  <span><%= qcm.nbpoints %></span>
+            </p>
+        </li>
+        <li>
+            <ul class="questionlist">
+                <% for(let question of qcm.questions) { %>
+                    <h2>Question</h2>
+                    <li>
+                        <p>
+                            Id : <span><%= question.id %></span>
+                        </p>
+                        <p>
+                            Name : <span><%= question.name %></span>
+                        </p>
+                        <ul class="propositionlist">
+                            <% for(let propositions of question.proposition_list) { %>
+                                <li>
+                                    <h3>Proposition</h3>
+                                    <p>
+                                        Id : <span><%= propositions.id %></span>
+                                    </p>
+                                    <p>
+                                        Name : <span><%= propositions.name %> </span>
+                                    </p>
+                                    <p>
+                                        Value : <span><%= propositions.isTrue %></span>
+                                    </p>
+                                </li>
+                            <% } %>
+                        </ul>
 
-                </li>
-            <% } %>
-        </ul>
-    </li>
+                    </li>
+                <% } %>
+            </ul>
+        </li>
 
-</ul>
+    </ul>
+</section>
 <%- include("footer") -%>
